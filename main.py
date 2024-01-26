@@ -4,6 +4,7 @@ import os
 import sys
 from crypto import encrypt_message, decrypt_message
 from store import delete_history, show_entry, store_entry
+from en import strings
 
 from utils import get_key, getDate
 
@@ -57,14 +58,14 @@ def login():
             break
         else:
             possible_tries -= 1
-            print("Password is incorrect. You have {} tries left".format(
+            print("❌ Password is incorrect. You have {} tries left".format(
                 possible_tries))
 
 
 def signup():
-    password = input("Enter new password: ")
+    password = input("Create new password: ")
     create_password(password)
-    print("Password created")
+    print("✅ Password created")
 
 
 def new_entry():
@@ -79,14 +80,14 @@ def delete_option():
 
 
 def exit():
-    print("Exiting...")
+    print("🚪 Exiting...")
     sys.exit()
 
 
 def show_menu():
-    print("1. New Entry")
-    print("2. Erase History")
-    print("3. Exit")
+    print("1️⃣ New Entry")
+    print("2️⃣ Erase History")
+    print("3️⃣ Exit")
     choice = input("Enter your choice: ")
     if (choice == "1"):
         new_entry()
@@ -95,11 +96,12 @@ def show_menu():
     elif (choice == "3"):
         exit()
     else:
-        print("Invalid choice")
+        print("🔢 Invalid choice")
 
     show_menu()
 
 def main():
+    print(strings["welcome"])
     if len(sys.argv) == 2:
         app_state["filename"] = sys.argv[1]
         print(f"Login to see the file: {app_state['filename']}")
